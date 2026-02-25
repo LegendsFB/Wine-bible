@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wine Bible</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <style>
+    body { background-color:#000; color:#fff; font-family: ui-sans-serif, system-ui, sans-serif; }
+    input { background-color:#1a1a1a !important; color:white !important; border-radius:12px !important; }
+    .card { background:#151515; border:1px solid #262626; border-radius:18px; }
+    .tag { color:#fbbf24; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script>
+    const WINES = [
+      // Whites
+      { category: "White", name: "Esedra | Pinot Grigio", region: "Friuli, Italy", grapes: "Pinot Grigio" },
+      { category: "White", name: "Villa Maria | Sauvignon Blanc", region: "Marlborough, New Zealand", grapes: "Sauvignon Blanc" },
+      { category: "White", name: "3XP | Chardonnay", region: "Niagara Peninsula, Canada", grapes: "Chardonnay" },
+      { category: "White", name: "Leaning Post | Riesling", region: "Niagara Peninsula, Canada", grapes: "Riesling" },
+      { category: "White", name: "Santa Margherita | Pinot Grigio", region: "Alto Adige, Italy", grapes: "Pinot Grigio" },
+      { category: "White", name: "Peller Estates | Pinot Gris", region: "Niagara Peninsula, Canada", grapes: "Pinot Gris" },
+      { category: "White", name: "Jean Marc Brocard | Chablis", region: "Chablis, France", grapes: "Chardonnay" },
+      { category: "White", name: "Domaine Hubert Brochard | Sancerre", region: "Sancerre, France", grapes: "Sauvignon Blanc" },
+      { category: "White", name: "Charles Baker, 'Picone Vineyard' | Riesling", region: "Niagara Peninsula, Canada", grapes: "Riesling" },
+      { category: "White", name: "Chateau de Maligny | Chablis 1er Cru", region: "Chablis, France", grapes: "Chardonnay" },
+
+      // Reds
+      { category: "Red", name: "Leyda Reserve | Pinot Noir", region: "Leyda Valley, Chile", grapes: "Pinot Noir" },
+      { category: "Red", name: "Pago Aylés 'Unexpected' | Garnacha", region: "Aragón, Spain", grapes: "Garnacha" },
+      { category: "Red", name: "Don David Reserve | Cabernet Sauvignon", region: "Calchaquí Valley, Argentina", grapes: "Cabernet Sauvignon" },
+      { category: "Red", name: "Frescobaldi | Chianti Classico", region: "Tuscany, Italy", grapes: "Sangiovese (blend)" },
+      { category: "Red", name: "Thirty Bench | Red Blend", region: "Niagara Peninsula, Canada", grapes: "Red Blend" },
+      { category: "Red", name: "Marqués de Murrieta | Rioja Reserva", region: "Rioja, Spain", grapes: "Tempranillo (blend)" },
+      { category: "Red", name: "Fontanafredda | Barolo", region: "Piedmont, Italy", grapes: "Nebbiolo" },
+      { category: "Red", name: "Tommasi | Amarone della Valpolicella", region: "Veneto, Italy", grapes: "Corvina-led blend" },
+      { category: "Red", name: "Frescobaldi | Brunello", region: "Tuscany, Italy", grapes: "Sangiovese" },
+      { category: "Red", name: "Chateau la Croix | Bordeaux", region: "Bordeaux, France", grapes: "Bordeaux blend" },
+      { category: "Red", name: "Chante Perdrix | Châteauneuf-du-Pape", region: "Rhône Valley, France", grapes: "Southern Rhône blend" },
+      { category: "Red", name: "Ca' del Monte | Amarone", region: "Veneto, Italy", grapes: "Corvina-led blend" },
+      { category: "Red", name: "Jean Baptiste Boudier | Savigny-lès-Beaune", region: "Burgundy, France", grapes: "Pinot Noir" },
+      { category: "Red", name: "Fuligni Brunello | Sangiovese", region: "Montalcino, Italy", grapes: "Sangiovese" },
+      { category: "Red", name: "Antinori | Tignanello", region: "Tuscany, Italy", grapes: "Sangiovese + Cab blend" },
+
+      // Sparkling / Rosé
+      { category: "Sparkling/Rosé", name: "Maison Nicolas Idiart | Cinsault", region: "Languedoc, France", grapes: "Cinsault" },
+      { category: "Sparkling/Rosé", name: "Bottega Vino dei Poeti | Prosecco", region: "Veneto, Italy", grapes: "Glera" },
+      { category: "Sparkling/Rosé", name: "Bottega Gold | Prosecco", region: "Veneto, Italy", grapes: "Glera" },
+      { category: "Sparkling/Rosé", name: "Piper-Heidsieck | Champagne", region: "Champagne, France", grapes: "Champagne blend" },
+    ];
+
+    // Dedupe by name (you had duplicates listed)
+    const uniq = [];
+    const seen = new Set();
+    for (const w of WINES) {
+      if (!seen.has(w.name)) { uniq.push(w); seen.add(w.name); }
+    }
+
+    function App() {
+      const [search, setSearch] = React.useState("");
+      const [openName, setOpenName] = React.useState(null);
+
+      const filtered = uniq.filter(w => {
+        const s = search.toLowerCase().trim();
+        if (!s) return true;
+        return (
+          w.name.toLowerCase().includes(s) ||
+          w.region.toLowerCase().includes(s) ||
+          (w.grapes || "").toLowerCase().includes(s) ||
+          (w.category || "").toLowerCase().includes(s)
+        );
+      });
+
+      return React.createElement(
+        "div",
+        { className: "max-w-3xl mx-auto p-4 pb-24" },
+
+        React.createElement(
+          "div",
+          { className: "sticky top-0 bg-black pt-6 pb-4 z-10" },
+          React.createElement("h1", { className: "text-2xl font-extrabold tracking-widest uppercase" }, "Wine Bible"),
+          React.createElement("div", { className: "mt-4" },
+            React.createElement("input", {
+              className: "w-full p-4 text-lg outline-none border border-zinc-800",
+              placeholder: `Search all ${uniq.length} wines...`,
+              value: search,
+              onChange: e => { setSearch(e.target.value); setOpenName(null); }
+            })
+          )
+        ),
+
+        React.createElement(
+          "div",
+          { className: "mt-4 space-y-3" },
+          filtered.map(w => {
+            const isOpen = openName === w.name;
+
+            return React.createElement(
+              "div",
+              { key: w.name, className: "card p-4" },
+
+              React.createElement(
+                "button",
+                {
+                  className: "w-full flex items-center justify-between text-left",
+                  onClick: () => setOpenName(isOpen ? null : w.name)
+                },
+                React.createElement("div", null,
+                  React.createElement("div", { className: "tag" }, w.category),
+                  React.createElement("div", { className: "text-lg font-semibold mt-1" }, w.name),
+                  React.createElement("div", { className: "text-sm text-zinc-400 mt-1" }, `${w.region} • ${w.grapes}`)
+                ),
+                React.createElement("div", { className: "text-zinc-500 text-2xl leading-none" }, isOpen ? "–" : "+")
+              ),
+
+              isOpen && React.createElement(
+                "div",
+                { className: "mt-4 pt-4 border-t border-zinc-800 space-y-3 text-sm text-zinc-200" },
+                React.createElement("div", { className: "text-zinc-400" }, "Add your house notes here:"),
+                React.createElement("ul", { className: "list-disc pl-5 space-y-1" },
+                  React.createElement("li", null, "Taste: (acid / body / key flavors)"),
+                  React.createElement("li", null, "Guest-friendly description (one sentence)"),
+                  React.createElement("li", null, "Best pairings in suites"),
+                  React.createElement("li", null, "Selling line (why it’s worth it)"),
+                  React.createElement("li", null, "Service note: temp / glass / decant (if applicable)")
+                )
+              )
+            );
+          })
+        )
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App));
+  </script>
+</body>
+</html>
