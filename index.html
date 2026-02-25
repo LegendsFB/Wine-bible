@@ -22,28 +22,42 @@
 
   <script>
     // ✅ Replace/expand these objects as needed
-    const WINES = [
-      {
-        category: "White",
-        name: "Esedra | Pinot Grigio",
-        region: "Friuli, Italy",
-        grapes: "Pinot Grigio",
-        taste: "High acid / light body / lemon, pear, white flowers, minerality",
-        guest: "Crisp, clean, refreshing — like a squeeze of lemon over chilled pear.",
-        selling: "The ‘serious’ Pinot Grigio: brighter, cleaner, more mineral than basic versions.",
-        service: "Serve well-chilled (6–8°C). White wine glass."
-      },
-      {
-        category: "Sparkling & Rosé",
-        name: "Piper-Heidsieck | Champagne",
-        region: "Champagne, France",
-        grapes: "Champagne blend",
-        taste: "High acid / light+ body / citrus, brioche, almond, fine persistent bubbles",
-        guest: "Real Champagne — crisp citrus with that classy toasty note.",
-        selling: "The upgrade people feel instantly: finer bubbles + more complexity = more luxury.",
-        service: "Serve very cold (4–6°C). Flute or white wine glass."
-      }
-    ];
+    const WINES = [const WINES = [
+  // Whites
+  { category:"White", name:"Esedra | Pinot Grigio", region:"Friuli, Italy", grapes:"Pinot Grigio", taste:"", guest:"", selling:"", service:"" },
+  { category:"White", name:"Villa Maria | Sauvignon Blanc", region:"Marlborough, New Zealand", grapes:"Sauvignon Blanc", taste:"", guest:"", selling:"", service:"" },
+  { category:"White", name:"3XP | Chardonnay", region:"Niagara Peninsula, Canada", grapes:"Chardonnay", taste:"", guest:"", selling:"", service:"" },
+  { category:"White", name:"Leaning Post | Riesling", region:"Niagara Peninsula, Canada", grapes:"Riesling", taste:"", guest:"", selling:"", service:"" },
+  { category:"White", name:"Santa Margherita | Pinot Grigio", region:"Alto Adige, Italy", grapes:"Pinot Grigio", taste:"", guest:"", selling:"", service:"" },
+  { category:"White", name:"Peller Estates | Pinot Gris", region:"Niagara Peninsula, Canada", grapes:"Pinot Gris", taste:"", guest:"", selling:"", service:"" },
+  { category:"White", name:"Jean Marc Brocard | Chablis", region:"Chablis, France", grapes:"Chardonnay", taste:"", guest:"", selling:"", service:"" },
+  { category:"White", name:"Domaine Hubert Brochard | Sancerre", region:"Sancerre, France", grapes:"Sauvignon Blanc", taste:"", guest:"", selling:"", service:"" },
+  { category:"White", name:"Charles Baker, 'Picone Vineyard' | Riesling", region:"Niagara Peninsula, Canada", grapes:"Riesling", taste:"", guest:"", selling:"", service:"" },
+  { category:"White", name:"Chateau de Maligny | Chablis 1er Cru", region:"Chablis, France", grapes:"Chardonnay", taste:"", guest:"", selling:"", service:"" },
+
+  // Reds
+  { category:"Red", name:"Leyda Reserve | Pinot Noir", region:"Leyda Valley, Chile", grapes:"Pinot Noir", taste:"", guest:"", selling:"", service:"" },
+  { category:"Red", name:"Pago Aylés 'Unexpected' | Garnacha", region:"Aragón, Spain", grapes:"Garnacha", taste:"", guest:"", selling:"", service:"" },
+  { category:"Red", name:"Don David Reserve | Cabernet Sauvignon", region:"Calchaqui Valley, Argentina", grapes:"Cabernet Sauvignon", taste:"", guest:"", selling:"", service:"" },
+  { category:"Red", name:"Frescobaldi | Chianti Classico", region:"Tuscany, Italy", grapes:"Sangiovese (blend)", taste:"", guest:"", selling:"", service:"" },
+  { category:"Red", name:"Thirty Bench | Red Blend", region:"Niagara Peninsula, Canada", grapes:"Red blend", taste:"", guest:"", selling:"", service:"" },
+  { category:"Red", name:"Marques de Murrieta | Rioja Reserva", region:"Rioja, Spain", grapes:"Tempranillo (blend)", taste:"", guest:"", selling:"", service:"" },
+  { category:"Red", name:"Fontanafredda | Barolo", region:"Piedmont, Italy", grapes:"Nebbiolo", taste:"", guest:"", selling:"", service:"" },
+  { category:"Red", name:"Tomassi | Amarone della Valpolicella", region:"Veneto, Italy", grapes:"Corvina-led blend", taste:"", guest:"", selling:"", service:"" },
+  { category:"Red", name:"Frescobaldi | Brunello", region:"Tuscany, Italy", grapes:"Sangiovese", taste:"", guest:"", selling:"", service:"" },
+  { category:"Red", name:"Chateau la Croix | Bordeaux", region:"Bordeaux, France", grapes:"Bordeaux blend", taste:"", guest:"", selling:"", service:"" },
+  { category:"Red", name:"Chante Perdrix | Châteauneuf-du-Pape", region:"Rhône Valley, France", grapes:"Southern Rhône blend", taste:"", guest:"", selling:"", service:"" },
+  { category:"Red", name:"Ca' del Monte | Amarone", region:"Veneto, Italy", grapes:"Corvina-led blend", taste:"", guest:"", selling:"", service:"" },
+  { category:"Red", name:"Jean Baptiste Boudier | Savigny-lès-Beaune", region:"Burgundy, France", grapes:"Pinot Noir", taste:"", guest:"", selling:"", service:"" },
+  { category:"Red", name:"Fuligni Brunello | Sangiovese", region:"Montalcino, Italy", grapes:"Sangiovese", taste:"", guest:"", selling:"", service:"" },
+  { category:"Red", name:"Antinori | Tignanello", region:"Tuscany, Italy", grapes:"Sangiovese/Cabernet blend", taste:"", guest:"", selling:"", service:"" },
+
+  // Sparkling & Rosé
+  { category:"Sparkling & Rosé", name:"Maison Nicolas Idiart | Cinsault", region:"Languedoc, France", grapes:"Cinsault", taste:"", guest:"", selling:"", service:"" },
+  { category:"Sparkling & Rosé", name:"Bottega Vino dei Poeti Prosecco", region:"Veneto, Italy", grapes:"Glera", taste:"", guest:"", selling:"", service:"" },
+  { category:"Sparkling & Rosé", name:"Bottega Gold | Prosecco", region:"Veneto, Italy", grapes:"Glera", taste:"", guest:"", selling:"", service:"" },
+  { category:"Sparkling & Rosé", name:"Piper-Heidsieck | Champagne", region:"Champagne, France", grapes:"Champagne blend", taste:"", guest:"", selling:"", service:"" }
+];];
 
     // Dedupe (by exact name)
     const uniq = [];
