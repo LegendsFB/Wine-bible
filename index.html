@@ -20,47 +20,305 @@
   <div id="root"></div>
 
   <script>
-    const WINES = [
-      // Whites
-      { category: "White", name: "Esedra | Pinot Grigio", region: "Friuli, Italy", grapes: "Pinot Grigio" },
-      { category: "White", name: "Villa Maria | Sauvignon Blanc", region: "Marlborough, New Zealand", grapes: "Sauvignon Blanc" },
-      { category: "White", name: "3XP | Chardonnay", region: "Niagara Peninsula, Canada", grapes: "Chardonnay" },
-      { category: "White", name: "Leaning Post | Riesling", region: "Niagara Peninsula, Canada", grapes: "Riesling" },
-      { category: "White", name: "Santa Margherita | Pinot Grigio", region: "Alto Adige, Italy", grapes: "Pinot Grigio" },
-      { category: "White", name: "Peller Estates | Pinot Gris", region: "Niagara Peninsula, Canada", grapes: "Pinot Gris" },
-      { category: "White", name: "Jean Marc Brocard | Chablis", region: "Chablis, France", grapes: "Chardonnay" },
-      { category: "White", name: "Domaine Hubert Brochard | Sancerre", region: "Sancerre, France", grapes: "Sauvignon Blanc" },
-      { category: "White", name: "Charles Baker, 'Picone Vineyard' | Riesling", region: "Niagara Peninsula, Canada", grapes: "Riesling" },
-      { category: "White", name: "Chateau de Maligny | Chablis 1er Cru", region: "Chablis, France", grapes: "Chardonnay" },
+    <script>
+const WINES = [
+  // Whites
+  {
+    category: "White",
+    name: "Esedra | Pinot Grigio",
+    region: "Friuli, Italy",
+    grapes: "Pinot Grigio",
+    taste: "High acid / light body / lemon, pear, white flowers, minerality",
+    guest: "Crisp, clean, refreshing white—like a squeeze of lemon over chilled pear.",
+    selling: "Friuli Pinot Grigio is the ‘serious’ version: brighter, cleaner, more mineral than the basic stuff.",
+    service: "Serve well-chilled (6–8°C). White wine glass."
+  },
+  {
+    category: "White",
+    name: "Villa Maria | Sauvignon Blanc",
+    region: "Marlborough, New Zealand",
+    grapes: "Sauvignon Blanc",
+    taste: "High acid / light body / lime, grapefruit, passionfruit, fresh herbs",
+    guest: "Zesty and aromatic—citrus + tropical fruit with a fresh herbal snap.",
+    selling: "Classic Marlborough: huge aroma, super crowd-pleasing, and it pops with food.",
+    service: "Serve well-chilled (6–8°C). White wine glass."
+  },
+  {
+    category: "White",
+    name: "3XP | Chardonnay",
+    region: "Niagara Peninsula, Canada",
+    grapes: "Chardonnay",
+    taste: "Medium+ acid / medium body / apple, pear, subtle oak spice, light creaminess",
+    guest: "Smooth but still fresh—orchard fruit with a soft, lightly creamy finish.",
+    selling: "Niagara Chardonnay that feels premium without being heavy—easy ‘yes’ for mixed groups.",
+    service: "Serve chilled (8–10°C). White wine glass."
+  },
+  {
+    category: "White",
+    name: "Leaning Post | Riesling",
+    region: "Niagara Peninsula, Canada",
+    grapes: "Riesling",
+    taste: "High acid / light body / green apple, lime, stone fruit, slatey minerality",
+    guest: "Bright and snappy—apple-lime freshness with a clean mineral finish.",
+    selling: "Riesling is the cheat code with food: it stays fresh, cuts richness, and keeps you wanting another sip.",
+    service: "Serve well-chilled (6–8°C). White wine glass."
+  },
+  {
+    category: "White",
+    name: "Santa Margherita | Pinot Grigio",
+    region: "Alto Adige, Italy",
+    grapes: "Pinot Grigio",
+    taste: "High acid / light body / citrus peel, green apple, melon, alpine minerality",
+    guest: "Crisp, elegant, and super clean—fresh apple and citrus with a polished finish.",
+    selling: "It’s famous for a reason: consistently crisp, refined, and ‘no-regrets’ for guests.",
+    service: "Serve well-chilled (6–8°C). White wine glass."
+  },
+  {
+    category: "White",
+    name: "Peller Estates | Pinot Gris",
+    region: "Niagara Peninsula, Canada",
+    grapes: "Pinot Gris",
+    taste: "Medium acid / medium body / pear, peach, light honey, soft spice",
+    guest: "Rounder and fruitier than Pinot Grigio—ripe pear/peach with a smooth finish.",
+    selling: "Great for guests who want ‘not too dry, not too sweet’—soft texture, easy to love.",
+    service: "Serve chilled (8–10°C). White wine glass."
+  },
+  {
+    category: "White",
+    name: "Jean Marc Brocard | Chablis",
+    region: "Chablis, France",
+    grapes: "Chardonnay",
+    taste: "High acid / light+ body / lemon, green apple, oyster shell, chalky minerality",
+    guest: "Very crisp and mineral—bright citrus with that clean ‘sea-breeze’ finish.",
+    selling: "Chablis is Chardonnay with the makeup wiped off: pure, mineral, and insanely food-friendly.",
+    service: "Serve chilled (8–10°C). White wine glass."
+  },
+  {
+    category: "White",
+    name: "Domaine Hubert Brochard | Sancerre",
+    region: "Sancerre, France",
+    grapes: "Sauvignon Blanc",
+    taste: "High acid / light body / grapefruit, gooseberry, herbs, flinty minerality",
+    guest: "Fresh, crisp, and elegant—citrus + herbs with a mineral edge.",
+    selling: "French Sauvignon is more refined and mineral than NZ—perfect ‘upgrade’ glass for suites.",
+    service: "Serve well-chilled (6–8°C). White wine glass."
+  },
+  {
+    category: "White",
+    name: "Charles Baker, 'Picone Vineyard' | Riesling",
+    region: "Niagara Peninsula, Canada",
+    grapes: "Riesling",
+    taste: "High acid / light body / lime, green apple, stone fruit, pronounced minerality",
+    guest: "Electric and precise—limey freshness with a clean, mineral snap.",
+    selling: "Single-vineyard Niagara Riesling: more depth, more precision—great for wine-curious guests.",
+    service: "Serve well-chilled (6–8°C). White wine glass."
+  },
+  {
+    category: "White",
+    name: "Chateau de Maligny | Chablis 1er Cru",
+    region: "Chablis, France",
+    grapes: "Chardonnay",
+    taste: "High acid / medium body / lemon curd, green apple, chalk, subtle richness",
+    guest: "Chablis, but richer—still crisp, with extra depth and a longer finish.",
+    selling: "Premier Cru is the ‘level-up’ Chablis: more concentration, more wow, still super clean.",
+    service: "Serve chilled (8–10°C). White wine glass."
+  },
 
-      // Reds
-      { category: "Red", name: "Leyda Reserve | Pinot Noir", region: "Leyda Valley, Chile", grapes: "Pinot Noir" },
-      { category: "Red", name: "Pago Aylés 'Unexpected' | Garnacha", region: "Aragón, Spain", grapes: "Garnacha" },
-      { category: "Red", name: "Don David Reserve | Cabernet Sauvignon", region: "Calchaquí Valley, Argentina", grapes: "Cabernet Sauvignon" },
-      { category: "Red", name: "Frescobaldi | Chianti Classico", region: "Tuscany, Italy", grapes: "Sangiovese (blend)" },
-      { category: "Red", name: "Thirty Bench | Red Blend", region: "Niagara Peninsula, Canada", grapes: "Red Blend" },
-      { category: "Red", name: "Marqués de Murrieta | Rioja Reserva", region: "Rioja, Spain", grapes: "Tempranillo (blend)" },
-      { category: "Red", name: "Fontanafredda | Barolo", region: "Piedmont, Italy", grapes: "Nebbiolo" },
-      { category: "Red", name: "Tommasi | Amarone della Valpolicella", region: "Veneto, Italy", grapes: "Corvina-led blend" },
-      { category: "Red", name: "Frescobaldi | Brunello", region: "Tuscany, Italy", grapes: "Sangiovese" },
-      { category: "Red", name: "Chateau la Croix | Bordeaux", region: "Bordeaux, France", grapes: "Bordeaux blend" },
-      { category: "Red", name: "Chante Perdrix | Châteauneuf-du-Pape", region: "Rhône Valley, France", grapes: "Southern Rhône blend" },
-      { category: "Red", name: "Ca' del Monte | Amarone", region: "Veneto, Italy", grapes: "Corvina-led blend" },
-      { category: "Red", name: "Jean Baptiste Boudier | Savigny-lès-Beaune", region: "Burgundy, France", grapes: "Pinot Noir" },
-      { category: "Red", name: "Fuligni Brunello | Sangiovese", region: "Montalcino, Italy", grapes: "Sangiovese" },
-      { category: "Red", name: "Antinori | Tignanello", region: "Tuscany, Italy", grapes: "Sangiovese + Cab blend" },
+  // Reds
+  {
+    category: "Red",
+    name: "Leyda Reserve | Pinot Noir",
+    region: "Leyda Valley, Chile",
+    grapes: "Pinot Noir",
+    taste: "Medium acid / light+ body / cherry, strawberry, gentle earth, light spice",
+    guest: "Silky, lighter red—bright red fruit with a smooth finish.",
+    selling: "Pinot is the ‘easy red’ for guests who don’t want anything heavy or too tannic.",
+    service: "Serve slightly cool (14–16°C). Burgundy/large red glass."
+  },
+  {
+    category: "Red",
+    name: "Pago Aylés 'Unexpected' | Garnacha",
+    region: "Aragón, Spain",
+    grapes: "Garnacha",
+    taste: "Medium acid / medium body / raspberry, cherry, dried herbs, warm spice",
+    guest: "Juicy and smooth—ripe red berries with a spicy, cozy finish.",
+    selling: "Garnacha is the crowd-pleasing red that still feels interesting—lots of fruit, no harsh edges.",
+    service: "Serve cellar temp (16–18°C). Red wine glass."
+  },
+  {
+    category: "Red",
+    name: "Don David Reserve | Cabernet Sauvignon",
+    region: "Calchaqui Valley, Argentina",
+    grapes: "Cabernet Sauvignon",
+    taste: "Medium acid / full body / blackcurrant, plum, cocoa, firm tannin",
+    guest: "Bold and structured—dark fruit with a touch of cocoa and a dry finish.",
+    selling: "High-altitude Argentina gives Cab serious flavor and structure—great steak red without the price flex.",
+    service: "Serve cellar temp (16–18°C). Decant 20–30 min if tight."
+  },
+  {
+    category: "Red",
+    name: "Frescobaldi | Chianti Classico",
+    region: "Tuscany, Italy",
+    grapes: "Sangiovese (blend)",
+    taste: "High acid / medium body / sour cherry, red plum, dried herbs, firm tannin",
+    guest: "Fresh and savory—cherry-fruit with that classic Italian ‘food wine’ bite.",
+    selling: "Chianti Classico is the ultimate table red: bright, savory, and made to go with food.",
+    service: "Serve slightly cool (16–18°C). Red wine glass."
+  },
+  {
+    category: "Red",
+    name: "Thirty Bench | Red Blend",
+    region: "Niagara Peninsula, Canada",
+    grapes: "Red Blend",
+    taste: "Medium acid / medium body / dark cherry, plum, baking spice, smooth tannin",
+    guest: "Smooth, fruit-forward red—dark berries with a soft spicy finish.",
+    selling: "Local Niagara red that drinks ‘premium’—easy win for guests who want Ontario pride in the glass.",
+    service: "Serve cellar temp (16–18°C). Red wine glass."
+  },
+  {
+    category: "Red",
+    name: "Marqués de Murrieta | Rioja Reserva",
+    region: "Rioja, Spain",
+    grapes: "Tempranillo (blend)",
+    taste: "Medium acid / medium+ body / red cherry, leather, vanilla, tobacco, polished tannin",
+    guest: "Elegant and smooth—fruit + subtle oak spice with a long finish.",
+    selling: "Reserva Rioja = age + polish. It tastes ‘expensive’ because time did the work.",
+    service: "Serve cellar temp (16–18°C). Decant 20–30 min."
+  },
+  {
+    category: "Red",
+    name: "Fontanafredda | Barolo",
+    region: "Piedmont, Italy",
+    grapes: "Nebbiolo",
+    taste: "High acid / full body / rose, cherry, tar, dried herbs, high tannin",
+    guest: "Powerful and serious—floral + cherry, with a firm, dry finish.",
+    selling: "Barolo is a ‘bucket list’ wine: complex, structured, and built for steak and rich dishes.",
+    service: "Serve 18°C. Decant 60–90 min. Large red glass."
+  },
+  {
+    category: "Red",
+    name: "Tommasi | Amarone della Valpolicella",
+    region: "Veneto, Italy",
+    grapes: "Corvina-led blend",
+    taste: "Medium acid / full body / dried cherry, raisin, cocoa, spice, velvety texture",
+    guest: "Rich and plush—dried fruit and cocoa, super smooth but intense.",
+    selling: "Amarone is made from dried grapes—so you get concentrated flavor and that luxurious texture.",
+    service: "Serve 18°C. Decant 30–60 min. Large red glass."
+  },
+  {
+    category: "Red",
+    name: "Frescobaldi | Brunello",
+    region: "Tuscany, Italy",
+    grapes: "Sangiovese",
+    taste: "High acid / full body / cherry, dried flowers, leather, firm tannin",
+    guest: "Elegant but powerful—cherry + savory notes with a long finish.",
+    selling: "Brunello is Sangiovese at maximum intensity—structured, complex, and made for premium dining.",
+    service: "Serve 18°C. Decant 60 min. Large red glass."
+  },
+  {
+    category: "Red",
+    name: "Chateau la Croix | Bordeaux",
+    region: "Bordeaux, France",
+    grapes: "Bordeaux blend",
+    taste: "Medium acid / medium+ body / blackcurrant, plum, cedar, structured tannin",
+    guest: "Classic ‘dry red’—dark fruit with a clean, structured finish.",
+    selling: "Bordeaux is the blueprint: balance, structure, and it pairs with basically everything rich.",
+    service: "Serve 18°C. Decant 20–40 min if tight."
+  },
+  {
+    category: "Red",
+    name: "Chante Perdrix | Châteauneuf-du-Pape",
+    region: "Rhône Valley, France",
+    grapes: "Southern Rhône blend",
+    taste: "Medium acid / full body / black cherry, garrigue herbs, pepper, warm spice",
+    guest: "Big and spicy—dark fruit with a savory herbal kick.",
+    selling: "This is the ‘wow’ Rhône: bold, complex, and perfect when guests want something impressive.",
+    service: "Serve 18°C. Decant 30–60 min. Large red glass."
+  },
+  {
+    category: "Red",
+    name: "Ca' del Monte | Amarone",
+    region: "Veneto, Italy",
+    grapes: "Corvina-led blend",
+    taste: "Medium acid / full body / dried cherry, fig, chocolate, spice, velvety",
+    guest: "Rich and smooth—dried fruit + chocolate with a long finish.",
+    selling: "If they like big reds, Amarone is the ‘luxury robe’ of wine—plush, rich, and memorable.",
+    service: "Serve 18°C. Decant 30–60 min."
+  },
+  {
+    category: "Red",
+    name: "Jean Baptiste Boudier | Savigny-lès-Beaune",
+    region: "Burgundy, France",
+    grapes: "Pinot Noir",
+    taste: "Medium+ acid / light+ body / cherry, cranberry, subtle earth, fine tannin",
+    guest: "Elegant and silky—bright red fruit with a refined, earthy edge.",
+    selling: "Burgundy Pinot is about finesse: lighter body, more nuance, and a very ‘premium’ feel.",
+    service: "Serve slightly cool (14–16°C). Burgundy glass."
+  },
+  {
+    category: "Red",
+    name: "Fuligni Brunello | Sangiovese",
+    region: "Montalcino, Italy",
+    grapes: "Sangiovese",
+    taste: "High acid / full body / cherry, dried rose, leather, strong tannin, long finish",
+    guest: "Serious and elegant—cherry + savory complexity with a long, dry finish.",
+    selling: "Top-tier Brunello: more depth, more length, more ‘this is why people collect wine.’",
+    service: "Serve 18°C. Decant 60–90 min. Large red glass."
+  },
+  {
+    category: "Red",
+    name: "Antinori | Tignanello",
+    region: "Tuscany, Italy",
+    grapes: "Sangiovese + Cabernet",
+    taste: "Medium+ acid / full body / dark cherry, cassis, herbs, cedar, polished tannin",
+    guest: "Deep, smooth, and luxurious—dark fruit with a long, elegant finish.",
+    selling: "Icon wine. If someone wants the ‘best bottle on the list’ energy, this is it.",
+    service: "Serve 18°C. Decant 60 min. Large red glass."
+  },
 
-      // Sparkling / Rosé
-      { category: "Sparkling/Rosé", name: "Maison Nicolas Idiart | Cinsault", region: "Languedoc, France", grapes: "Cinsault" },
-      { category: "Sparkling/Rosé", name: "Bottega Vino dei Poeti | Prosecco", region: "Veneto, Italy", grapes: "Glera" },
-      { category: "Sparkling/Rosé", name: "Bottega Gold | Prosecco", region: "Veneto, Italy", grapes: "Glera" },
-      { category: "Sparkling/Rosé", name: "Piper-Heidsieck | Champagne", region: "Champagne, France", grapes: "Champagne blend" },
-    ];
-
-    // Dedupe by name (you had duplicates listed)
-    const uniq = [];
-    const seen = new Set();
-    for (const w of WINES) {
+  // Sparkling & Rosé
+  {
+    category: "Sparkling & Rosé",
+    name: "Maison Nicolas Idiart | Cinsault",
+    region: "Languedoc, France",
+    grapes: "Cinsault",
+    taste: "Medium acid / light body / strawberry, watermelon, soft floral notes",
+    guest: "Fresh and fruity—soft red-berry rosé vibes, super easy drinking.",
+    selling: "Rosé is the universal translator: it works for white-wine and red-wine people at the same table.",
+    service: "Serve well-chilled (6–8°C). White/rosé glass."
+  },
+  {
+    category: "Sparkling & Rosé",
+    name: "Bottega Vino dei Poeti Prosecco",
+    region: "Veneto, Italy",
+    grapes: "Glera",
+    taste: "Medium acid / light body / green apple, pear, white flowers, light sweetness",
+    guest: "Bright and bubbly—apple/pear freshness with a soft, friendly finish.",
+    selling: "Prosecco is the ‘celebration by default’ bottle—easy, fun, and always fits the moment.",
+    service: "Serve very cold (4–6°C). Flute or white wine glass."
+  },
+  {
+    category: "Sparkling & Rosé",
+    name: "Bottega Gold | Prosecco",
+    region: "Veneto, Italy",
+    grapes: "Glera",
+    taste: "Medium acid / light body / apple, pear, floral notes, clean finish",
+    guest: "Crisp, lively bubbles—fresh orchard fruit and a clean finish.",
+    selling: "Same crowd-pleasing Prosecco style, but presented as a premium ‘event’ bottle (yes, the gold helps).",
+    service: "Serve very cold (4–6°C). Flute or white wine glass."
+  },
+  {
+    category: "Sparkling & Rosé",
+    name: "Piper-Heidsieck | Champagne",
+    region: "Champagne, France",
+    grapes: "Champagne blend",
+    taste: "High acid / light+ body / citrus, brioche, almond, fine persistent bubbles",
+    guest: "Crisp and elegant—citrus + that classic toasty Champagne note.",
+    selling: "Real Champagne: finer bubbles, more complexity, and it instantly elevates the whole suite experience.",
+    service: "Serve very cold (4–6°C). Flute or white wine glass."
+  }
+];
+</script> {
       if (!seen.has(w.name)) { uniq.push(w); seen.add(w.name); }
     }
 
