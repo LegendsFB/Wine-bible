@@ -8,6 +8,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 
   <style>
@@ -374,6 +375,42 @@ const isAdmin = (new URLSearchParams(window.location.search).get("admin") === "1
       const [search, setSearch] = React.useState("");
       const [openName, setOpenName] = React.useState(null);
       const [qrDataUrl, setQrDataUrl] = React.useState(null);
+      const isAdmin = new URLSearchParams(window.location.search).get("admin") === "1";
+const staffLink = window.location.origin + window.location.pathname; // no ?admin=1
+
+React.useEffect(() => {
+  if (!isAdmin) return;
+
+  // wait until the QR library is actually available
+  const tryBuild = () => {
+    const el = document.getElementById("staffQr");
+    if (!el) return false;
+
+    // clear any previous QR
+    el.innerHTML = "";
+
+    if (window.QRCode) {
+      new window.QRCode(el, {
+        text: staffLink,
+        width: 220,
+        height: 220,
+        correctLevel: window.QRCode.CorrectLevel.M
+      });
+      return true;
+    }
+    return false;
+  };
+
+  // Try immediately, then retry a few times (covers slow script loads on Pages)
+  let attempts = 0;
+  const timer = setInterval(() => {
+    attempts++;
+    const ok = tryBuild();
+    if (ok || attempts >= 20) clearInterval(timer);
+  }, 250);
+
+  return () => clearInterval(timer);
+}, [isAdmin, staffLink]);
       React.useEffect(() => {
   if (!isAdmin) return;            // only generate QR on admin link
   if (!window.QRCode) return;      // safety check
@@ -501,7 +538,17 @@ isAdmin && React.createElement(
     { className: "shrink-0" },
     qrDataUrl
       ? React.createElement("img", { src: qrDataUrl, alt: "QR Code", className: "rounded-xl border border-zinc-700" })
-      : React.createElement("div", { className: "text-zinc-500 text-sm" }, "Generating QR...")
+      : React.createElement("div", { className: "text-zinc-500 text-sm" }, "React.createElement("div", { className: "flex items-start gap-6 mt-4" },
+  React.createElement("div", { className: "bg-white p-3 rounded-xl" },
+    React.createElement("div", { id: "staffQr" })
+  ),
+  React.createElement("div", { className: "text-sm text-zinc-400 leading-relaxed pt-1" },
+    "QR points to the staff link (no admin=1).",
+    React.createElement("div", { className: "mt-2 text-zinc-500" },
+      "Tip: right-click the QR → Save image as…"
+    )
+  )
+)")
   )
 ),
 
